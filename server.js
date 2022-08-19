@@ -89,6 +89,6 @@ app.post("/contact/send_message", async (req, res) => {
         }
     }
 })
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7992;
 app.listen(port);
 console.log("is listening at ", port);
