@@ -10,32 +10,16 @@ const bodyParser = require('body-parser');
 const project = require("./models/project");
 const message = require("./models/message")
 const validate = require('deep-email-validator');
-const { networkInterfaces } = require('os');
 const { json } = require("body-parser");
 
 const validateEmail = async (email) => {
-    const verdict = await validate.validate(email)
-    console.log(verdict);
+    const verdict = (await validate.validate(email)).valid
     if (verdict) {
         return true;
     }
     else return false;
 }
-const nets = networkInterfaces();
-const results = Object.create(null); // Or just '{}', an empty object
 
-for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        if (net.family === 'IPv4' && !net.internal) {
-            if (!results[name]) {
-                results[name] = [];
-            }
-            results[name].push(net.address);
-            console.log(results);
-        }
-    }
-}
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
     session({
@@ -67,7 +51,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/contact/send_message", async (req, res) => {
-    const email = req.body.email.valid;
+    const email = req.body.email;
     if (!(await validateEmail(email)) || !email) {
         res.status(403).send("Enter a valid Email");
     }

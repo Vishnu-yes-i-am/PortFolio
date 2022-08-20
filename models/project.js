@@ -1,11 +1,21 @@
 const { default: mongoose } = require('mongoose')
 const Str = require('@supercharge/strings');
 const mongo = require('mongoose')
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+}
 
+function formatDate(date) {
+    return [
+        date.getFullYear(),
+        padTo2Digits(date.getMonth() + 1),
+        padTo2Digits(date.getDate()),
+    ].join('-');
+}
 const ProjectSchema = new mongo.Schema({
     title: String,
     category: String,
-    data: Date,
+    date: { type: String, default: (new Date).getUTCDate() + "-" + (new Date).getUTCMonth() + "-" + (new Date).getUTCFullYear() },
     link: String,
     images: [{ String }],
     desc: String,
