@@ -17,7 +17,7 @@ const ProjectSchema = new mongo.Schema({
     category: String,
     date: { type: String, default: (new Date).getUTCDate() + "-" + (new Date).getUTCMonth() + "-" + (new Date).getUTCFullYear() },
     link: String,
-    images: [{ String }],
+    image: { type: Array, default: ["https://dummyimage.com/medrect"] },
     desc: String,
     usedTech: [String]
 })

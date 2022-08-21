@@ -154,9 +154,9 @@
           <% for(var i=0;i<projects.length;i++) {%>
             <div class="col-md-4">
               <div class="work-box">
-                <a href="https://dummyimage.com/medrect" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                <a href="<%= projects[i].image[0]%>" data-gallery="portfolioGallery" class="portfolio-lightbox">
                   <div class="work-img">
-                    <img src="https://dummyimage.com/medrect" alt="product-image" class="img-fluid">
+                    <img src="<%= projects[i].image[0]%>" alt="product-image" class="img-fluid">
                   </div>
                 </a>
                 <div class="work-content">
