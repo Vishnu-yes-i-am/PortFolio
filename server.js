@@ -49,6 +49,16 @@ app.get("/", async (req, res) => {
     const projects = await project.find({});
     res.render("index.ejs", { projects: projects });
 });
+app.get("/showProject", async (req, res) => {
+    const id = req.query.id;
+    const p = await project.find({ _id: id });
+    if (p.length == 1) {
+        res.render("projectDetails.ejs", { data: p[0] });
+    }
+    else {
+        res.send("this project is not available");
+    }
+});
 
 app.post("/contact/send_message", async (req, res) => {
     const email = req.body.email;

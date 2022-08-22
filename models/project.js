@@ -19,6 +19,7 @@ const ProjectSchema = new mongo.Schema({
     link: String,
     image: { type: Array, default: ["https://dummyimage.com/medrect"] },
     desc: String,
-    usedTech: [String]
+    usedTech: [String],
+    client: { type: String, default: "Self Project" }
 })
 module.exports = mongoose.model('Project', ProjectSchema)
