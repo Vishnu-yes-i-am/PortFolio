@@ -82,6 +82,10 @@ a:hover {
   background-position: center center;
 }
 
+.about-me p {
+  font-size: larger;
+}
+
 @media (max-width: 1024px) {
   .bg-image {
     background-attachment: scroll;
